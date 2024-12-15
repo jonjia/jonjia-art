@@ -1,5 +1,5 @@
 // @ts-check
-import jonjia from '@jonjia/eslint-config'
+import jonjia from '@antfu/eslint-config'
 
 export default jonjia(
   {
