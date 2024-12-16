@@ -36,68 +36,19 @@ const model = genAI.getGenerativeModel({
   },
 })
 
-const prompt = `列举出一类世界上特别有名的美国实体，可以是人物或者物体。比如有代表性的，近3届美国总统
-## 具体要求
-1. 列举出至少5实体
-2. 每个实体需要有一句话的描述，每个实体出现2次，描述不一样
-3. 每个人物/角色实体的描述需要包含一个动作，动作最好有混搭和反差
-
+const prompt = `列举出5个世界知名的、性感美丽的美国女演员
 ## 输出样例
 
 [
   {
-    "english": "Goku in Dragon Ball buys hamburgers at McDonald's",
-    "chinese": "龙珠中的悟空在麦当劳买汉堡"
-  },
-  {
-    "english": "Goku in Dragon Ball cooks a Michelin-starred meal",
-    "chinese": "龙珠中的悟空正在烹饪一顿米其林级别的大餐"
-  },
-  {
-    "english": "Vegeta from Dragon Ball practices ballet in a tutu",
-    "chinese": "龙珠中的贝吉塔穿着芭蕾舞裙练习芭蕾"
-  },
-  {
-    "english": "Vegeta from Dragon Ball hosts a cooking show on TV",
-    "chinese": "龙珠中的贝吉塔在电视上主持烹饪节目"
-  },
-  {
-    "english": "Piccolo from Dragon Ball teaches kindergarten class",
-    "chinese": "龙珠中的比克在幼儿园当老师"
-  },
-  {
-    "english": "Piccolo from Dragon Ball performs stand-up comedy",
-    "chinese": "龙珠中的比克在表演单口相声"
-  },
-  {
-    "english": "Master Roshi from Dragon Ball gives a TED talk",
-    "chinese": "龙珠中的龟仙人在做TED演讲"
-  },
-  {
-    "english": "Master Roshi from Dragon Ball leads a yoga class",
-    "chinese": "龙珠中的龟仙人在教瑜伽课"
-  },
-  {
-    "english": "Bulma from Dragon Ball competes in a wrestling match",
-    "chinese": "龙珠中的布尔玛在参加摔跤比赛"
-  },
-  {
-    "english": "Bulma from Dragon Ball conducts a symphony orchestra",
-    "chinese": "龙珠中的布尔玛在指挥交响乐团"
+    "english": "Brad Pitt",
+    "chinese": "布拉德·皮特"
   }
 ]
 
-## 输出要求
-1. 使用英文输出内容
-2. 可以根据输出的内容画出一个简单的图画
-3. 输出的内容必须是一类实体，比如动漫角色，或者电影人物，或者动物，或者食物等等
-4. 每个实体的描述都需要有一个动作，动作最好有混搭和反差
-5. 不要再用美国总统这个例子了，换一个新的例子
-6. 一共包括 10 个元素
-
 ## 输出格式
-Item = {'english': string}
-Return: Array<Recipe>
+Item = {'english': string, 'chinese': string}
+Return: Array<Item>
 `
 
 async function getObjectList(): Promise<Record<string, string>[]> {
@@ -147,11 +98,11 @@ async function query(inputs: string, fileName: string): Promise<string> {
 async function main(): Promise<void> {
   const list = await getObjectList()
   console.log(`list: ${JSON.stringify(list, null, 2)}`)
-  for (const [index, { english }] of list.entries()) {
-    const fileName = `${index}.jpeg`
-    const outputPath = await query(`A pencil sketch of ${english}`, fileName)
-    console.log(`finish ${index + 1}/${list.length}. outputPath: ${outputPath}`)
-  }
+  // for (const [index, { english }] of list.entries()) {
+  //   const fileName = `${index}.jpeg`
+  //   const outputPath = await query(`A pencil sketch of ${english}`, fileName)
+  //   console.log(`finish ${index + 1}/${list.length}. outputPath: ${outputPath}`)
+  // }
 }
 
 main()
