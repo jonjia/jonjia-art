@@ -36,13 +36,13 @@ const model = genAI.getGenerativeModel({
   },
 })
 
-const prompt = `列举出5个世界知名的、性感美丽的美国女演员
+const prompt = `列举出10个最受女性欢迎的奢侈品牌
 ## 输出样例
 
 [
   {
-    "english": "Brad Pitt",
-    "chinese": "布拉德·皮特"
+    "english": "Louis Vuitton",
+    "chinese": "路易威登"
   }
 ]
 
